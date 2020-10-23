@@ -18,7 +18,15 @@ LIGHT_BLUE = (50, 204, 255)
 LIGHT_GREY = (240, 240, 250)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
+COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN, LIGHT_BLUE]
+
+
+def music():
+    """Plays music for the game"""
+    pygame.init()
+    pygame.mixer.init()
+    #pygame.mixer.music.load('Music.mp3')
+    #pygame.mixer.music.play(-1)
 
 
 class Score:
@@ -37,8 +45,8 @@ class Score:
         screen.blit(surface_score, (50, 50))
 
     def hello(self):
-        surface_hi = pygame.font.SysFont('Helvetic', 500).render('Do not touch my car', False, BLACK)
-        screen.blit(surface_hi, (200, 200))
+        surface_hi = pygame.font.SysFont('Helvetic', 50).render('Do not touch my car', False, BLACK)
+        screen.blit(surface_hi, (850, 20))
 
 
 class Ball(object):
@@ -186,6 +194,7 @@ aims = [Aim() for j in range(3)]
 cars = [Car() for k in range(1)]
 
 while not finished:
+    music()
     clock.tick(FPS)
     for ball in balls:
         ball.move()
@@ -205,12 +214,12 @@ while not finished:
                     score.increase(1)
             for aim in aims:
                 if aim.click_aim(event.pos):
-                    score.increase(int(100 / aim.r))
+                    score.increase(int(1000 / aim.r))
             for car in cars:
                 if car.click_car(event.pos):
                     score.decrease()
     score.text()
-
+    score.hello()
     pygame.display.update()
     screen.fill(WHITE)
 

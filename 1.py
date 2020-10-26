@@ -196,7 +196,7 @@ def music():
     """Plays music for the game"""
     pygame.mixer.init()
     pygame.mixer.music.load("1.wav")
-    pygame.mixer.music.play(30)
+    pygame.mixer.music.play(100)
 
 
 def write_leaders():
@@ -232,7 +232,7 @@ def write_leaders():
 
 
 time = 0
-game_length = 10
+game_length = 50
 
 pygame.display.update()
 clock = pygame.time.Clock()
